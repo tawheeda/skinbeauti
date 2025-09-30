@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | SkinBeaüti</title>
+  <meta name="description" content="SkinBeaüti — professional skincare in Dunkeld. Book your treatment today." />
+  <meta name="theme-color" content="#efe9e4" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">S</div>
+        <h1>SkinBeaüti</h1>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a class="cta" href="contact.html">Book / Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">Get in touch</div>
+      <h2>Questions or ready to book?</h2>
+      <p class="lead">Use the form or booking widget below.</p>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div id="booking" class="card" style="margin-bottom:18px">
+        <h4 style="margin-top:0">Booking</h4>
+        <p class="meta">Embed your preferred system (e.g., Fresha, Setmore, Calendly). Replace the iframe with your provider’s code.</p>
+        <div style="border:1px dashed #ddd;border-radius:12px;overflow:hidden">
+          <iframe title="Booking placeholder" srcdoc="<div style='font-family:sans-serif;padding:20px;text-align:center'>Booking widget placeholder</div>" style="width:100%;height:200px;border:0"></iframe>
+        </div>
+      </div>
+
+      <div class="card">
+        <form id="contactForm" novalidate>
+          <div class="full">
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your full name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" inputmode="tel" placeholder="082 549 3571" />
+          </div>
+          <div class="full">
+            <label for="message">How can we help?</label>
+            <textarea id="message" name="message" placeholder="Tell us about your skin goals…" required></textarea>
+          </div>
+          <div class="full" style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+            <button class="btn primary" type="submit">Send message</button>
+            <a class="btn secondary" href="mailto:Info@skinbeauti.co.za?subject=Website%20enquiry">Or email us directly</a>
+          </div>
+          <p id="formNote" class="meta full" style="margin:0"></p>
+        </form>
+      </div>
+
+      <div style="margin-top:18px" class="meta">
+        <p><strong>Address:</strong> Dunkeld, Johannesburg • <em>exact address on booking confirmation</em></p>
+        <p><strong>Hours:</strong> By appointment</p>
+        <p><strong>WhatsApp/Phone:</strong> 082 549 3571 (example; replace with preferred number)</p>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "SkinBeaüti",
+    "address": {"@type":"PostalAddress","addressLocality":"Dunkeld","addressRegion":"Gauteng","addressCountry":"ZA"},
+    "email": "Info@skinbeauti.co.za",
+    "url": "https://skinbeauti.co.za/",
+    "telephone": "+27-82-549-3571"
+  }
+  </script>
+
+  <footer>
+    <div class="container foot">
+      <p>© <span id="year">2025</span> SkinBeaüti. All rights reserved.</p>
+<p class="legal-links">
+  <a href="#" data-modal-open="privacy">Privacy Policy</a> ·
+  <a href="#" data-modal-open="terms">Terms</a>
+</p>    </div>
+  </footer>
+  <script src="script.js"></script>
+
+  <div class="modal" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-title" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" aria-label="Close" data-modal-close>&times;</button>
+    <h2 id="modal-privacy-title" class="modal-title">Privacy Policy</h2>
+    <div class="modal-content prose">
+      <p>Your Privacy Policy text goes here…</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" data-modal-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="modal" id="modal-terms" role="dialog" aria-modal="true" aria-labelledby="modal-terms-title" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" aria-label="Close" data-modal-close>&times;</button>
+    <h2 id="modal-terms-title" class="modal-title">Terms & Conditions</h2>
+    <div class="modal-content prose">
+      <p>Your Terms & Conditions text goes here…</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" data-modal-close>Close</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
