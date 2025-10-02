@@ -75,11 +75,11 @@ document.querySelectorAll('[data-book]').forEach(btn => {
     // If this button navigates to contact.html, ensure the URL has ?service=...
     const href = btn.getAttribute('href') || '';
     if (href && /contact\.html/i.test(href)) {
-      // Use current page as base so it works on file:// and http(s)://
+      // Use current page as base so it works on file:// and http(s):// and GH Pages subpaths
       const url = new URL(href, window.location.href);
       if (service) url.searchParams.set('service', service);
       url.hash = 'booking';
-      // write full href (prevents file:///C:/ contact.html issue)
+      // write full href (prevents file:///C:/ issue and wrong subpath on GH Pages)
       btn.setAttribute('href', url.href);
       // allow normal navigation
     } else {
@@ -92,19 +92,32 @@ document.querySelectorAll('[data-book]').forEach(btn => {
 });
 
 // ---------------- Prefill message from URL (?service=...) ------
+// More robust for GH Pages: waits for DOM if needed and handles errors gracefully.
 (function(){
-  const params = new URLSearchParams(location.search);
-  const svc = params.get('service');
-  if (!svc) return;
+  function prefillFromQuery(){
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const svc = params.get('service');
+      if (!svc) return;
 
-  const message = document.getElementById('message');
-  if (message && !message.value.trim()) {
-    message.value = `I would like to book ${svc}.`;
+      const message = document.getElementById('message');
+      if (message && !message.value.trim()) {
+        message.value = `I would like to book ${svc}.`;
+      }
+
+      // Scroll to booking section if present
+      const booking = document.getElementById('booking') || document.querySelector('#booking');
+      if (booking) booking.scrollIntoView({ behavior: 'smooth' });
+    } catch (err) {
+      console.warn('Prefill error:', err);
+    }
   }
 
-  // Scroll to booking section if present
-  const booking = document.getElementById('booking') || document.querySelector('#booking');
-  if (booking) booking.scrollIntoView({ behavior: 'smooth' });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', prefillFromQuery);
+  } else {
+    prefillFromQuery();
+  }
 })();
 
 // ===================== Modals (Privacy / Terms) =====================
