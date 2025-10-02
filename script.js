@@ -60,12 +60,52 @@ if (form) {
 }
 
 // ---------------- Booking buttons → booking section ------------
-document.querySelectorAll('[data-book]').forEach(btn =>
-  btn.addEventListener('click', () => {
+// Works both on the same page (immediate prefill) and cross-page (via ?service=...).
+document.querySelectorAll('[data-book]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const service = (btn.getAttribute('data-book') || '').trim();
     const target = document.querySelector('#booking');
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-  })
-);
+    const message = document.getElementById('message');
+
+    // If the booking form exists on this page, prefill immediately.
+    if (service && message) {
+      message.value = `I would like to book ${service}.`;
+    }
+
+    // If this button navigates to contact.html, ensure the URL has ?service=...
+    const href = btn.getAttribute('href') || '';
+    if (href && /contact\.html/i.test(href)) {
+      // Use current page as base so it works on file:// and http(s)://
+      const url = new URL(href, window.location.href);
+      if (service) url.searchParams.set('service', service);
+      url.hash = 'booking';
+      // write full href (prevents file:///C:/ contact.html issue)
+      btn.setAttribute('href', url.href);
+      // allow normal navigation
+    } else {
+      // Same page: smooth scroll to #booking if present
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      // Prevent jump if the button has href="#"
+      if (btn.getAttribute('href') === '#') e.preventDefault();
+    }
+  });
+});
+
+// ---------------- Prefill message from URL (?service=...) ------
+(function(){
+  const params = new URLSearchParams(location.search);
+  const svc = params.get('service');
+  if (!svc) return;
+
+  const message = document.getElementById('message');
+  if (message && !message.value.trim()) {
+    message.value = `I would like to book ${svc}.`;
+  }
+
+  // Scroll to booking section if present
+  const booking = document.getElementById('booking') || document.querySelector('#booking');
+  if (booking) booking.scrollIntoView({ behavior: 'smooth' });
+})();
 
 // ===================== Modals (Privacy / Terms) =====================
 // HTML expects: links with [data-modal-open="privacy|terms"]
