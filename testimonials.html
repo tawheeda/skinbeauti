@@ -10,24 +10,33 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">S</div>
-        <h1>SkinBeaüti</h1>
-      </div>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <!---<li><a href="services.html">Services</a></li>---> 
-          <li><a href="pricing.html">Services & Pricing</a></li>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a class="cta" href="contact.html">Book / Contact</a></li>
-        </ul>
-      </nav>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">S</div>
+      <h1>SkinBeaüti</h1>
     </div>
-  </header>
+
+    <!-- Mobile menu toggle -->
+    <button class="nav-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+      <span class="nav-bar" aria-hidden="true"></span>
+      <span class="nav-bar" aria-hidden="true"></span>
+      <span class="nav-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav aria-label="Primary">
+      <ul id="primary-nav" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <!---<li><a href="services.html">Services</a></li>--->
+        <li><a href="pricing.html">Services & Pricing</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a class="cta" href="contact.html">Book / Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <section class="hero">
   <div class="container">
     <div class="eyebrow">Reviews</div>
